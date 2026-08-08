@@ -24,7 +24,7 @@ Secretary TUI (read-only observation)
 Every arrow is a reviewed handoff, not an automatic network call or implicit
 authority grant.
 
-## P0 — required before publishing WGM
+## P0 — completed in 0.1.1
 
 1. **Public document schema**
    - Define one versioned JSON Schema for the portable document shape.
@@ -44,7 +44,7 @@ authority grant.
      evidence references. It must never carry credentials, prompts, outputs,
      private paths, or execution permission.
 
-## P1 — required before publishing Mothership Router
+## P1 — complete baseline for Mothership Router 0.1.0
 
 1. **Clean-room extraction of the portable runtime**
    - Re-author the useful `portable/` behavior from the private transfer kit.

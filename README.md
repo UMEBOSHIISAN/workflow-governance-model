@@ -49,6 +49,31 @@ layer that validates workflow evidence and authority boundaries before a human
 chooses any external action. Neither package installs, configures, or invokes
 the other.
 
+## Compose the public ecosystem
+
+WGM can create or validate a portable reviewed-request handoff before
+[Mothership Router](https://github.com/UMEBOSHIISAN/mothership-router) performs
+its local, human-gated dry-run selection. [Mothership](https://github.com/UMEBOSHIISAN/mothership)
+provides portable environment contracts and diagnostics around those tools.
+
+The handoff is deliberately small and credential-free:
+
+```json
+{
+  "schema_version": "1.0",
+  "task_id": "review-20260808-001",
+  "capability": "code-review",
+  "risk": "low",
+  "token_budget": 4000,
+  "evidence_references": ["evidence:design-note-v1"]
+}
+```
+
+See the [public handoff schema](schemas/workflow-handoff.schema.json),
+[valid example](examples/handoff.valid.json), and the
+[compatibility guide](docs/compatibility.md). This object never includes
+credentials, prompts, outputs, local paths, or execution permission.
+
 ## Safe LLM routing
 
 WGM can rank locally declared candidates with `recommend_route(task, registry)`.
@@ -79,6 +104,7 @@ invoke a model or inspect a local machine.
 ## Project docs
 
 - [Architecture](docs/architecture.md)
+- [Composition and compatibility](docs/compatibility.md)
 - [Integration gates and roadmap](NEXT.md)
 - [Contributing](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)

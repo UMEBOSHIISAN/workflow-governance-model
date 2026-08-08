@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import unittest
 from unittest import mock
+import json
+from pathlib import Path
 
-from wgm import validate_document
+from wgm import validate_document, validate_handoff
 from wgm.router import recommend_route
 from wgm.__main__ import main
 
@@ -83,6 +85,20 @@ class RoutingTests(unittest.TestCase):
         with mock.patch("sys.stderr") as stderr:
             self.assertEqual(2, main([]))
         self.assertTrue(stderr.write.called)
+
+
+class HandoffTests(unittest.TestCase):
+    def test_valid_public_handoff_is_accepted(self) -> None:
+        example = json.loads((Path(__file__).parents[1] / "examples" / "handoff.valid.json").read_text(encoding="utf-8"))
+        self.assertEqual([], validate_handoff(example))
+
+    def test_handoff_rejects_execution_authority_and_unknown_fields(self) -> None:
+        example = json.loads((Path(__file__).parents[1] / "examples" / "handoff.invalid.json").read_text(encoding="utf-8"))
+        self.assertTrue(validate_handoff(example))
+
+    def test_handoff_rejects_empty_evidence_references(self) -> None:
+        handoff = {"schema_version": "1.0", "task_id": "task-1", "capability": "analysis", "risk": "low", "token_budget": 1, "evidence_references": []}
+        self.assertTrue(validate_handoff(handoff))
 
 
 if __name__ == "__main__":
