@@ -3,8 +3,9 @@
 > A portable, fail-closed data model for governing AI-assisted workflows.
 
 Workflow Governance Model (WGM) validates the evidence and authority trail
-around a workflow. It is intentionally not an agent runner, LLM router,
-scheduler, credential manager, or approval UI.
+around a workflow. It includes a pure, non-executing candidate recommender;
+it is not an agent runner, execution router, scheduler, credential manager,
+or approval UI.
 
 ## What it models
 
@@ -74,6 +75,13 @@ invoke a model or inspect a local machine.
 - Automatic model selection, retry, fallback, or execution.
 - Credentials, endpoints, machine paths, host topology, or business policy.
 - Replacing human approval with a model decision.
+
+## Project docs
+
+- [Architecture](docs/architecture.md)
+- [Integration gates and roadmap](NEXT.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
 
 ## License
 
