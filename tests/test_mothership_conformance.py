@@ -1,0 +1,115 @@
+from __future__ import annotations
+
+import copy
+import hashlib
+import json
+from pathlib import Path, PurePosixPath
+import unittest
+
+from wgm import validate_handoff
+
+
+ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / "suite/mothership-0.2-conformance.json"
+SCHEMA = ROOT / "schemas/workflow-handoff.schema.json"
+EXAMPLE = ROOT / "examples/handoff.valid.json"
+EXPECTED_KEYS = {
+    "schema_version",
+    "suite_release",
+    "repository",
+    "protocol_kind",
+    "protocol_version",
+    "schema_path",
+    "schema_sha256",
+    "example_path",
+    "authority_effect",
+    "execution_effect",
+}
+
+
+def _check_manifest(document: object) -> None:
+    if type(document) is not dict or set(document) != EXPECTED_KEYS:
+        raise ValueError("manifest shape")
+    expected = {
+        "schema_version": "mothership.conformance.v1",
+        "suite_release": "0.2.0",
+        "repository": "workflow-governance-model",
+        "protocol_kind": "governance-handoff",
+        "protocol_version": "1.0",
+        "schema_path": "schemas/workflow-handoff.schema.json",
+        "example_path": "examples/handoff.valid.json",
+        "authority_effect": False,
+        "execution_effect": False,
+    }
+    for name, value in expected.items():
+        if document[name] != value:
+            raise ValueError(name)
+    for name in ("schema_path", "example_path"):
+        value = document[name]
+        if type(value) is not str:
+            raise ValueError(name)
+        parsed = PurePosixPath(value)
+        if (
+            parsed.is_absolute()
+            or parsed.as_posix() != value
+            or any(part in ("", ".", "..") for part in parsed.parts)
+            or not (ROOT / value).is_file()
+        ):
+            raise ValueError(name)
+    if document["schema_sha256"] != hashlib.sha256(SCHEMA.read_bytes()).hexdigest():
+        raise ValueError("schema_sha256")
+
+
+class MothershipConformanceTests(unittest.TestCase):
+    def test_closed_manifest_binds_owner_schema_and_example(self) -> None:
+        _check_manifest(json.loads(MANIFEST.read_text("utf-8")))
+
+    def test_manifest_rejects_drift_missing_files_and_effects(self) -> None:
+        manifest = json.loads(MANIFEST.read_text("utf-8"))
+        corruptions = {
+            "extra": ("extra", "x"),
+            "repository": ("repository", "mothership"),
+            "kind": ("protocol_kind", "router-manifest"),
+            "version": ("protocol_version", "2.0"),
+            "path": ("schema_path", "../workflow-handoff.schema.json"),
+            "missing": ("example_path", "examples/missing.json"),
+            "digest": ("schema_sha256", "0" * 64),
+            "authority": ("authority_effect", True),
+            "execution": ("execution_effect", True),
+        }
+        for name, (field, value) in corruptions.items():
+            with self.subTest(name=name):
+                changed = copy.deepcopy(manifest)
+                changed[field] = value
+                with self.assertRaises(ValueError):
+                    _check_manifest(changed)
+
+    def test_golden_handoff_passes_the_production_validator(self) -> None:
+        handoff = json.loads(EXAMPLE.read_text("utf-8"))
+        self.assertEqual([], validate_handoff(handoff))
+        self.assertEqual("demo-review-001", handoff["task_id"])
+        self.assertEqual("code-review", handoff["capability"])
+        self.assertEqual("low", handoff["risk"])
+        self.assertGreater(handoff["token_budget"], 0)
+        self.assertTrue(all("/" not in item for item in handoff["evidence_references"]))
+
+    def test_authority_carriers_and_private_paths_are_rejected(self) -> None:
+        handoff = json.loads(EXAMPLE.read_text("utf-8"))
+        forbidden = {
+            "execution_permission": True,
+            "approved": True,
+            "command": ["run"],
+            "prompt": "hidden",
+            "model_output": "hidden",
+            "credential": "hidden",
+            "private_path": "/private/example",
+        }
+        for field, value in forbidden.items():
+            with self.subTest(field=field):
+                changed = copy.deepcopy(handoff)
+                changed[field] = value
+                self.assertTrue(validate_handoff(changed))
+
+
+if __name__ == "__main__":
+    unittest.main()

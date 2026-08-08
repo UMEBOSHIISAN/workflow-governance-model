@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Added a closed Mothership 0.2.0 owner manifest and synthetic
+  `governance-handoff` 1.0 example with tests for schema drift, forbidden
+  authority carriers, private paths, and false effect boundaries.
+
 ## 0.2.1 - 2026-08-08
 
 - Fixed public CI to include the `src/` package directory while running the standard-library test suite.

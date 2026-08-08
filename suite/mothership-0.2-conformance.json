@@ -1,0 +1,12 @@
+{
+  "schema_version": "mothership.conformance.v1",
+  "suite_release": "0.2.0",
+  "repository": "workflow-governance-model",
+  "protocol_kind": "governance-handoff",
+  "protocol_version": "1.0",
+  "schema_path": "schemas/workflow-handoff.schema.json",
+  "schema_sha256": "e59784d4da3368e97fcf7dd104d713169057bbad59047ad9d61f4bba572305d0",
+  "example_path": "examples/handoff.valid.json",
+  "authority_effect": false,
+  "execution_effect": false
+}

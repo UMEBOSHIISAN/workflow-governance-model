@@ -47,7 +47,9 @@ if not result.valid:
 Mothership is a portable local control plane. WGM is an optional governance
 layer that validates workflow evidence and authority boundaries before a human
 chooses any external action. Neither package installs, configures, or invokes
-the other.
+the other. WGM owns the `governance-handoff` 1.0 schema; the local Mothership
+0.2.0 suite relationship and reproducible owner manifest are documented in
+[`docs/mothership-suite.md`](docs/mothership-suite.md).
 
 ## Compose the public ecosystem
 
@@ -61,11 +63,11 @@ The handoff is deliberately small and credential-free:
 ```json
 {
   "schema_version": "1.0",
-  "task_id": "review-20260808-001",
+  "task_id": "demo-review-001",
   "capability": "code-review",
   "risk": "low",
   "token_budget": 4000,
-  "evidence_references": ["evidence:design-note-v1"]
+  "evidence_references": ["evidence:demo-change-v1"]
 }
 ```
 
