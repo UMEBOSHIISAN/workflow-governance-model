@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 - 2026-08-08
+
+- Fixed public CI to include the `src/` package directory while running the standard-library test suite.
+
 ## 0.2.0 - 2026-08-08
 
 - Added a versioned, metadata-only public handoff schema with valid and invalid examples.

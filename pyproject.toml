@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "workflow-governance-model"
-version = "0.2.0"
+version = "0.2.1"
 description = "Fail-closed workflow evidence and authority validation"
 requires-python = ">=3.12"
 license = {text = "MIT"}
