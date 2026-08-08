@@ -60,6 +60,15 @@ High-risk work always returns `human_review_required`. A user may connect the
 result to a separate execution system only after reviewing the candidate,
 credentials, egress, and exact command in that system.
 
+Try the included examples:
+
+```sh
+PYTHONPATH=src python3 -m wgm examples/task.json examples/registry.json
+```
+
+The command only reads two JSON files and prints a recommendation. It does not
+invoke a model or inspect a local machine.
+
 ## Non-goals
 
 - Automatic model selection, retry, fallback, or execution.

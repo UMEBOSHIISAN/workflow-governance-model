@@ -1,0 +1,18 @@
+{
+  "candidates": [
+    {
+      "alias": "local-analysis",
+      "capabilities": ["analysis"],
+      "max_risk": "low",
+      "max_tokens": 8000,
+      "cost_rank": 1
+    },
+    {
+      "alias": "careful-analysis",
+      "capabilities": ["analysis", "planning"],
+      "max_risk": "medium",
+      "max_tokens": 32000,
+      "cost_rank": 2
+    }
+  ]
+}

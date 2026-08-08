@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import unittest
+from unittest import mock
 
 from wgm import validate_document
 from wgm.router import recommend_route
+from wgm.__main__ import main
 
 
 def evidence(identifier: str = "evidence-1", strength: str = "authoritative") -> dict[str, object]:
@@ -76,6 +78,11 @@ class RoutingTests(unittest.TestCase):
         result = recommend_route(task, registry)
         self.assertIsNone(result["recommended_alias"])
         self.assertEqual("no_eligible_candidate", result["status"])
+
+    def test_cli_requires_two_input_files(self) -> None:
+        with mock.patch("sys.stderr") as stderr:
+            self.assertEqual(2, main([]))
+        self.assertTrue(stderr.write.called)
 
 
 if __name__ == "__main__":
