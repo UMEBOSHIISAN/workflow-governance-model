@@ -42,7 +42,7 @@ def _check_manifest(document: object) -> None:
         "execution_effect": False,
     }
     for name, value in expected.items():
-        if document[name] != value:
+        if document[name] != value or type(document[name]) is not type(value):
             raise ValueError(name)
     for name in ("schema_path", "example_path"):
         value = document[name]
@@ -75,7 +75,9 @@ class MothershipConformanceTests(unittest.TestCase):
             "missing": ("example_path", "examples/missing.json"),
             "digest": ("schema_sha256", "0" * 64),
             "authority": ("authority_effect", True),
+            "authority_number": ("authority_effect", 0),
             "execution": ("execution_effect", True),
+            "execution_number": ("execution_effect", 0),
         }
         for name, (field, value) in corruptions.items():
             with self.subTest(name=name):
@@ -108,6 +110,21 @@ class MothershipConformanceTests(unittest.TestCase):
             with self.subTest(field=field):
                 changed = copy.deepcopy(handoff)
                 changed[field] = value
+                self.assertTrue(validate_handoff(changed))
+
+        for private_value in (
+            "/Users/example/private.json",
+            "~/private.json",
+            r"C:\\Users\\example\\private.json",
+        ):
+            for field in ("task_id", "capability"):
+                with self.subTest(field=field, private_value=private_value):
+                    changed = copy.deepcopy(handoff)
+                    changed[field] = private_value
+                    self.assertTrue(validate_handoff(changed))
+            with self.subTest(field="evidence_references", private_value=private_value):
+                changed = copy.deepcopy(handoff)
+                changed["evidence_references"] = [private_value]
                 self.assertTrue(validate_handoff(changed))
 
 

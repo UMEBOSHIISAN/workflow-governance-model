@@ -5,6 +5,8 @@
 - Added a closed Mothership 0.2.0 owner manifest and synthetic
   `governance-handoff` 1.0 example with tests for schema drift, forbidden
   authority carriers, private paths, and false effect boundaries.
+- Reject absolute POSIX, home-relative, and Windows paths in all portable
+  handoff identifiers.
 
 ## 0.2.1 - 2026-08-08
 
