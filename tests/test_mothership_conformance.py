@@ -116,6 +116,13 @@ class MothershipConformanceTests(unittest.TestCase):
             "/Users/example/private.json",
             "~/private.json",
             r"C:\\Users\\example\\private.json",
+            r"\\server\share\private.json",
+            r"\\?\C:\private.json",
+            r"~\private.json",
+            "../private.json",
+            "private/path.json",
+            "private\nvalue",
+            "private\x7fvalue",
         ):
             for field in ("task_id", "capability"):
                 with self.subTest(field=field, private_value=private_value):

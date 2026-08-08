@@ -5,7 +5,7 @@
   "protocol_kind": "governance-handoff",
   "protocol_version": "1.0",
   "schema_path": "schemas/workflow-handoff.schema.json",
-  "schema_sha256": "d8a2cac7ef6884c3b45630a6752b1766dabfcbc7a1dc3bffb75391cd98202ce0",
+  "schema_sha256": "c3e45e320d141e4364f465de86cb0af88d7a9034b62dd8fc05b87a3ab07d4c53",
   "example_path": "examples/handoff.valid.json",
   "authority_effect": false,
   "execution_effect": false
