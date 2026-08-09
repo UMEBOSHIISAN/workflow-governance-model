@@ -7,7 +7,7 @@
 
 <p align="center">
   <img alt="python" src="https://img.shields.io/badge/python-3.12%2B-3776ab">
-  <img alt="tests" src="https://img.shields.io/badge/tests-11%20passing-16a34a">
+  <img alt="tests" src="https://img.shields.io/badge/tests-17%20passing-16a34a">
   <img alt="dependencies" src="https://img.shields.io/badge/dependencies-stdlib%20only-5fd3d3">
   <img alt="side effects" src="https://img.shields.io/badge/side%20effects-none-e06a6a">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-f0a04b">
@@ -69,12 +69,12 @@ The public handoff object is deliberately small. Here is a valid one:
 
 ```json
 {
-  "schema_version": "1.0",
-  "task_id": "review-20260808-001",
+  "schema_version": "1.1",
+  "task_id": "demo-review-001",
   "capability": "code-review",
   "risk": "low",
   "token_budget": 4000,
-  "evidence_references": ["evidence:design-note-v1"]
+  "evidence_references": ["evidence:demo-change-v1"]
 }
 ```
 
@@ -91,6 +91,15 @@ validate_handoff(invalid)  -> [HandoffError(path='$', message='handoff contains 
 
 The contract is **closed**: unknown fields are rejected rather than ignored. An ignored field is a field that can carry credentials, prompts, local paths, or a claim of execution permission across a boundary that was supposed to stop them. This object never includes any of those — not because it strips them, but because a document containing them is not a valid document.
 
+The [portable 1.1 schema](schemas/workflow-handoff.1.1.schema.json) also closes
+identifier portability: public identifiers begin with an ASCII alphanumeric and
+continue with ASCII alphanumerics, `.`, `_`, `:`, or `-`; drive-relative `X:`
+prefixes are rejected. The previously released, permissive
+[`workflow-handoff` 1.0 schema](schemas/workflow-handoff.schema.json) remains
+available without reinterpretation for compatibility. New producers should emit
+1.1. The reproducible Mothership 0.2.0 owner manifest lives in
+[`docs/mothership-suite.md`](docs/mothership-suite.md).
+
 > 未知のフィールドを「無視する」設計は、そのフィールドに何でも積めるということ。閉じた契約では、権限を名乗るキーが1つ増えただけで文書全体が不正になる。
 
 ---
@@ -102,7 +111,7 @@ Python **3.12+**, standard library only.
 ```sh
 git clone https://github.com/UMEBOSHIISAN/workflow-governance-model.git
 cd workflow-governance-model
-PYTHONPATH=src python3 -m unittest discover -s tests -v      # 11 tests
+PYTHONPATH=src python3 -m unittest discover -s tests -v      # 17 tests
 ```
 
 > **`PYTHONPATH=src` is required** unless you install the package first. Without it the suite fails with `ModuleNotFoundError: No module named 'wgm'` and reports a single error — a path problem, not a broken checkout. To drop the prefix, run `python3 -m pip install -e .` once.
@@ -172,7 +181,7 @@ Mothership                  ── portable contracts, diagnostics, boundaries
 | [Mothership Router](https://github.com/UMEBOSHIISAN/mothership-router) | Turns a reviewed request into a human-gated dry-run manifest bound to a registry digest |
 | [Mothership](https://github.com/UMEBOSHIISAN/mothership) | Supplies the portable environment contracts and diagnostics around both |
 
-Neither package installs, configures, or invokes the other. Each is independently adoptable. See the [public handoff schema](schemas/workflow-handoff.schema.json), the [valid example](examples/handoff.valid.json), and the [compatibility guide](docs/compatibility.md).
+Neither package installs, configures, or invokes the other. Each is independently adoptable. See the [portable 1.1 handoff schema](schemas/workflow-handoff.1.1.schema.json), the [valid example](examples/handoff.valid.json), and the [compatibility guide](docs/compatibility.md).
 
 ---
 

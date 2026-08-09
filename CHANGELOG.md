@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+- Reject non-string handoff schema versions as validation errors instead of
+  raising an exception on otherwise valid JSON input.
+- Added a closed Mothership 0.2.0 owner manifest and synthetic
+  `governance-handoff` 1.1 example with tests for schema drift, forbidden
+  authority carriers, private paths, and false effect boundaries.
+- Define every portable handoff identifier as an ASCII token: an alphanumeric
+  first character followed only by alphanumerics, `.`, `_`, `:`, or `-`, with
+  drive-relative `X:` prefixes rejected. Runtime and JSON Schema enforce the
+  same true-end grammar.
+- Preserve the released `governance-handoff` 1.0 acceptance set and publish
+  the narrowed portable contract as 1.1 instead of changing 1.0 in place.
+
 ## 0.2.1 - 2026-08-08
 
 - Fixed public CI to include the `src/` package directory while running the standard-library test suite.

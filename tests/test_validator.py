@@ -100,6 +100,19 @@ class HandoffTests(unittest.TestCase):
         handoff = {"schema_version": "1.0", "task_id": "task-1", "capability": "analysis", "risk": "low", "token_budget": 1, "evidence_references": []}
         self.assertTrue(validate_handoff(handoff))
 
+    def test_handoff_rejects_non_string_schema_versions_without_crashing(self) -> None:
+        base = {
+            "task_id": "task-1",
+            "capability": "analysis",
+            "risk": "low",
+            "token_budget": 1,
+            "evidence_references": ["evidence-1"],
+        }
+        for version in ([], {}):
+            with self.subTest(version=version):
+                errors = validate_handoff({"schema_version": version, **base})
+                self.assertIn("schema_version", {error.path for error in errors})
+
 
 if __name__ == "__main__":
     unittest.main()
