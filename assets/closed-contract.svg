@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" role="img" aria-label="An open contract ignores unknown fields and lets them cross the boundary; a closed contract rejects the whole document instead">
+  <defs>
+    <linearGradient id="ccbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1024"/>
+      <stop offset="100%" stop-color="#101d40"/>
+    </linearGradient>
+    <marker id="cca" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e06a6a"/>
+    </marker>
+    <marker id="ccb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5fd3d3"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="640" fill="url(#ccbg)"/>
+  <g fill="#ffffff" opacity="0.4">
+    <circle cx="130" cy="62" r="1.1"/><circle cx="1080" cy="80" r="1"/><circle cx="600" cy="26" r="1"/>
+    <circle cx="1155" cy="600" r="1.1"/><circle cx="44" cy="570" r="1"/>
+  </g>
+
+  <g font-family="ui-sans-serif,-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+    <text x="600" y="44" text-anchor="middle" font-size="25" font-weight="700" fill="#e8eef7">An ignored field is a field that can carry anything.</text>
+    <text x="600" y="71" text-anchor="middle" font-size="13.5" fill="#8fa4c8">未知のフィールドを「無視する」設計は、そこに何でも積めるということ。閉じた契約は、無視する代わりに文書全体を拒否する。</text>
+
+    <!-- shared input -->
+    <rect x="300" y="94" width="600" height="126" rx="10" fill="#132449" stroke="#2c4a86"/>
+    <text x="322" y="118" font-size="11.5" font-weight="600" fill="#8fa4c8">the same handoff object, offered to both designs</text>
+    <text x="322" y="141" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#cdd9ee">{"schema_version": "1.1", "task_id": "demo-review-001",</text>
+    <text x="322" y="159" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#cdd9ee"> "capability": "code-review", "risk": "low", "token_budget": 4000,</text>
+    <text x="322" y="177" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#cdd9ee"> "evidence_references": ["evidence:demo-change-v1"],</text>
+    <rect x="316" y="183" width="470" height="21" rx="4" fill="#3a1620"/>
+    <text x="322" y="197" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#ffb3b3"> "execution_permission": "do-not-put-authority-here"}</text>
+    <text x="800" y="197" font-size="11" fill="#e0a0a0">← one extra key</text>
+
+    <line x1="480" y1="226" x2="420" y2="262" stroke="#e06a6a" stroke-width="2" marker-end="url(#cca)"/>
+    <line x1="720" y1="226" x2="780" y2="262" stroke="#5fd3d3" stroke-width="2" marker-end="url(#ccb)"/>
+
+    <!-- LEFT: open contract -->
+    <rect x="44" y="268" width="524" height="288" rx="12" fill="#0d1733" stroke="#7d2f3a"/>
+    <text x="70" y="298" font-size="15" font-weight="700" fill="#ffb3b3">Open contract</text>
+    <text x="70" y="318" font-size="11.5" fill="#c98d94">unknown fields are ignored — the usual default</text>
+
+    <rect x="70" y="332" width="472" height="58" rx="8" fill="#132449" stroke="#2c4a86"/>
+    <text x="86" y="355" font-size="12" fill="#cdd9ee">validator reads the six fields it knows,</text>
+    <text x="86" y="375" font-size="12" fill="#8fa4c8">skips the seventh, and returns <tspan font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" fill="#9de8e8">valid</tspan></text>
+
+    <line x1="306" y1="396" x2="306" y2="422" stroke="#e06a6a" stroke-width="2" marker-end="url(#cca)"/>
+    <text x="318" y="414" font-size="11" fill="#e0a0a0">the object keeps travelling</text>
+
+    <rect x="70" y="428" width="472" height="106" rx="9" fill="#2a1218" stroke="#7d2f3a"/>
+    <text x="86" y="452" font-size="12.5" font-weight="700" fill="#ffb3b3">and the extra key crosses the boundary</text>
+    <text x="86" y="474" font-size="11.5" fill="#e0a0a0">· a credential the reviewer never saw</text>
+    <text x="86" y="492" font-size="11.5" fill="#e0a0a0">· a prompt, a local path, a host address</text>
+    <text x="86" y="510" font-size="11.5" fill="#e0a0a0">· a claim of execution permission nobody granted</text>
+    <text x="86" y="528" font-size="11" fill="#c98d94">誰も読まなかったフィールドが、そのまま境界を越える</text>
+
+    <!-- RIGHT: closed contract -->
+    <rect x="632" y="268" width="524" height="288" rx="12" fill="#0d1733" stroke="#2f7d7d"/>
+    <text x="658" y="298" font-size="15" font-weight="700" fill="#9de8e8">Closed contract</text>
+    <text x="658" y="318" font-size="11.5" fill="#6fb5b5">the document, not the field, is what fails</text>
+
+    <rect x="658" y="332" width="472" height="58" rx="8" fill="#132449" stroke="#2c4a86"/>
+    <text x="674" y="355" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#cdd9ee">validate_handoff(valid)    -&gt; []</text>
+    <text x="674" y="376" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#ffb3b3">validate_handoff(invalid)  -&gt; [HandoffError…]</text>
+
+    <line x1="894" y1="396" x2="894" y2="422" stroke="#5fd3d3" stroke-width="2" marker-end="url(#ccb)"/>
+    <text x="906" y="414" font-size="11" fill="#6fb5b5">nothing travels</text>
+
+    <rect x="658" y="428" width="472" height="106" rx="9" fill="#0f2f33" stroke="#2f7d7d"/>
+    <text x="674" y="452" font-size="12.5" font-weight="700" fill="#9de8e8">handoff contains unsupported fields</text>
+    <text x="674" y="474" font-size="11.5" fill="#6fb5b5">· the field is not stripped, sanitized, or logged</text>
+    <text x="674" y="492" font-size="11.5" fill="#6fb5b5">· a document containing it is simply not a document</text>
+    <text x="674" y="510" font-size="11.5" fill="#6fb5b5">· the failure happens at the boundary, in the open</text>
+    <text x="674" y="528" font-size="11" fill="#6fb5b5">除去するのではない。それを含む文書は、そもそも有効ではない</text>
+
+    <!-- bottom callout -->
+    <rect x="44" y="572" width="1112" height="52" rx="10" fill="#180f22" stroke="#6b4a8a"/>
+    <text x="68" y="597" font-size="14" font-weight="700" fill="#d8bff0">Nobody broke a rule in the left panel. The validator did exactly what it was written to do.</text>
+    <text x="68" y="616" font-size="12" fill="#a894c0">That is how governance actually fails: not by override, but by a field that was never anyone's job to read. 統治は「破られて」壊れるのではなく、誰の担当でもないフィールドから壊れる。</text>
+  </g>
+</svg>

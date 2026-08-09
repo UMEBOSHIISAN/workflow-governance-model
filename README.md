@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/wgm-logo.svg" alt="Workflow Governance Model emblem: six chain links, one of them rejected" width="150">
+</p>
+
 <h1 align="center">Workflow Governance Model</h1>
 
 <p align="center">
@@ -64,6 +68,10 @@ That fifth one is worth dwelling on. Re-asking in a fresh session is the most na
 ---
 
 ## The boundary is one field wide
+
+<p align="center">
+  <img src="assets/closed-contract.svg" alt="An open contract ignores an unknown field and lets it cross the boundary; a closed contract rejects the whole document" width="100%">
+</p>
 
 The public handoff object is deliberately small. Here is a valid one:
 
@@ -161,6 +169,10 @@ A recommendation is an opinion with its reasoning attached. Connecting it to a r
 ---
 
 ## Composing the public ecosystem
+
+<p align="center">
+  <img src="assets/composition-pipeline.svg" alt="Workflow Governance Model, Mothership Router, and Mothership as three separate boundaries, each returning to a human" width="100%">
+</p>
 
 ```text
 evidence + task

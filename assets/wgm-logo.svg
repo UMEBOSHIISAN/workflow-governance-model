@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Workflow Governance Model emblem: six chain links forming a closed ring, with one link rejected">
+  <defs>
+    <linearGradient id="wbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1733"/>
+      <stop offset="100%" stop-color="#101d40"/>
+    </linearGradient>
+    <radialGradient id="wglow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#5fd3d3" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#5fd3d3" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="100" cy="100" r="94" fill="url(#wbg)" stroke="#2c4a86" stroke-width="2"/>
+  <circle cx="100" cy="100" r="52" fill="url(#wglow)"/>
+
+  <!-- the closed chain: six links, evidence through verification -->
+  <g fill="none" stroke="#5fd3d3" stroke-width="6" stroke-linecap="round">
+    <path d="M 100 34 A 66 66 0 0 1 152 62"/>
+    <path d="M 160 76 A 66 66 0 0 1 160 124"/>
+    <path d="M 152 138 A 66 66 0 0 1 111 165"/>
+    <path d="M 89 165 A 66 66 0 0 1 48 138"/>
+    <path d="M 40 124 A 66 66 0 0 1 40 76"/>
+  </g>
+
+  <!-- the sixth link: rejected, so the ring does not close on a bad reference -->
+  <g fill="none" stroke="#e06a6a" stroke-width="6" stroke-linecap="round" stroke-dasharray="7 8">
+    <path d="M 48 62 A 66 66 0 0 1 89 35"/>
+  </g>
+
+  <!-- link nodes -->
+  <g fill="#0d1733" stroke="#4a90d9" stroke-width="2.5">
+    <circle cx="100" cy="34" r="7"/>
+    <circle cx="157" cy="67" r="7"/>
+    <circle cx="157" cy="133" r="7"/>
+    <circle cx="100" cy="166" r="7"/>
+    <circle cx="43" cy="133" r="7"/>
+  </g>
+  <circle cx="43" cy="67" r="7" fill="#2a1218" stroke="#e06a6a" stroke-width="2.5"/>
+
+  <!-- center: a label is not evidence -->
+  <circle cx="100" cy="100" r="28" fill="#132449" stroke="#4a90d9" stroke-width="2"/>
+  <path d="M 88 100 L 97 109 L 113 91" fill="none" stroke="#5fd3d3" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
