@@ -95,6 +95,16 @@ class MothershipConformanceTests(unittest.TestCase):
         self.assertGreater(handoff["token_budget"], 0)
         self.assertTrue(all("/" not in item for item in handoff["evidence_references"]))
 
+    def test_owner_schema_uses_the_portable_true_end_token_grammar(self) -> None:
+        schema = json.loads(SCHEMA.read_text("utf-8"))
+        pattern = r"^(?![A-Za-z]:)[A-Za-z0-9][A-Za-z0-9._:-]*(?![\s\S])"
+        self.assertEqual(pattern, schema["properties"]["task_id"]["pattern"])
+        self.assertEqual(pattern, schema["properties"]["capability"]["pattern"])
+        self.assertEqual(
+            pattern,
+            schema["properties"]["evidence_references"]["items"]["pattern"],
+        )
+
     def test_authority_carriers_and_private_paths_are_rejected(self) -> None:
         handoff = json.loads(EXAMPLE.read_text("utf-8"))
         forbidden = {
@@ -122,7 +132,13 @@ class MothershipConformanceTests(unittest.TestCase):
             "../private.json",
             "private/path.json",
             "private\nvalue",
+            "private\n",
             "private\x7fvalue",
+            "private\x85value",
+            "private\x9bvalue",
+            "private\u2028value",
+            "C:private.json",
+            "日本語",
         ):
             for field in ("task_id", "capability"):
                 with self.subTest(field=field, private_value=private_value):

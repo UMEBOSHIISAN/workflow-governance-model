@@ -16,16 +16,13 @@ class HandoffError:
 
 
 def _is_safe_identifier(value: object) -> bool:
-    return (
-        isinstance(value, str)
-        and bool(value)
-        and not any(
-            character in "/\\"
-            or ord(character) < 0x20
-            or ord(character) == 0x7F
-            for character in value
-        )
-    )
+    if not isinstance(value, str) or not value or not value.isascii():
+        return False
+    if not value[0].isalnum():
+        return False
+    if len(value) >= 2 and value[0].isalpha() and value[1] == ":":
+        return False
+    return all(character.isalnum() or character in "._:-" for character in value[1:])
 
 
 def validate_handoff(handoff: object) -> list[HandoffError]:
@@ -40,7 +37,7 @@ def validate_handoff(handoff: object) -> list[HandoffError]:
         errors.append(HandoffError("schema_version", "schema_version must be '1.0'"))
     for name in ("task_id", "capability"):
         if not _is_safe_identifier(handoff.get(name)):
-            errors.append(HandoffError(name, f"{name} must be a non-path identifier"))
+            errors.append(HandoffError(name, f"{name} must be a portable ASCII identifier"))
     if handoff.get("risk") not in _RISKS:
         errors.append(HandoffError("risk", "risk must be low, medium, or high"))
     budget = handoff.get("token_budget")
@@ -48,5 +45,5 @@ def validate_handoff(handoff: object) -> list[HandoffError]:
         errors.append(HandoffError("token_budget", "token_budget must be a positive integer"))
     references = handoff.get("evidence_references")
     if not isinstance(references, list) or not references or any(not _is_safe_identifier(value) for value in references):
-        errors.append(HandoffError("evidence_references", "evidence_references must be a non-empty list of non-path identifiers"))
+        errors.append(HandoffError("evidence_references", "evidence_references must be a non-empty list of portable ASCII identifiers"))
     return errors

@@ -75,6 +75,9 @@ See the [public handoff schema](schemas/workflow-handoff.schema.json),
 [valid example](examples/handoff.valid.json), and the
 [compatibility guide](docs/compatibility.md). This object never includes
 credentials, prompts, outputs, local paths, or execution permission.
+Public identifiers use a portable ASCII token grammar: they begin with an
+alphanumeric character and continue with alphanumerics, `.`, `_`, `:`, or `-`;
+drive-relative `X:` prefixes are rejected.
 
 ## Safe LLM routing
 

@@ -5,8 +5,10 @@
 - Added a closed Mothership 0.2.0 owner manifest and synthetic
   `governance-handoff` 1.0 example with tests for schema drift, forbidden
   authority carriers, private paths, and false effect boundaries.
-- Reject POSIX, relative, home, drive, UNC, and device path forms plus control
-  characters in all portable handoff identifiers.
+- Define every portable handoff identifier as an ASCII token: an alphanumeric
+  first character followed only by alphanumerics, `.`, `_`, `:`, or `-`, with
+  drive-relative `X:` prefixes rejected. Runtime and JSON Schema enforce the
+  same true-end grammar.
 
 ## 0.2.1 - 2026-08-08
 
