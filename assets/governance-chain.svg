@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" role="img" aria-label="The six-link governance chain and what breaks each link">
+  <defs>
+    <linearGradient id="wbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1024"/>
+      <stop offset="100%" stop-color="#101d40"/>
+    </linearGradient>
+    <marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5fd3d3"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="600" fill="url(#wbg)"/>
+  <g fill="#ffffff" opacity="0.4">
+    <circle cx="80" cy="60" r="1.1"/><circle cx="1130" cy="80" r="1"/><circle cx="600" cy="28" r="1"/>
+    <circle cx="60" cy="560" r="1"/><circle cx="1150" cy="540" r="1.1"/>
+  </g>
+
+  <text x="600" y="46" text-anchor="middle" font-family="ui-sans-serif,-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="25" font-weight="700" fill="#e8eef7">A chain is only as strong as the link you skipped.</text>
+  <text x="600" y="73" text-anchor="middle" font-family="ui-sans-serif,-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="13.5" fill="#8fa4c8">証拠から検証までの6段。飛ばした一段は「速い」のではなく、そこで鎖が切れている。</text>
+
+  <g font-family="ui-sans-serif,-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+    <!-- chain -->
+    <g>
+      <rect x="30" y="128" width="164" height="66" rx="9" fill="#132449" stroke="#2c4a86"/>
+      <text x="112" y="158" text-anchor="middle" font-size="14" font-weight="700" fill="#cdeaf2">Evidence</text>
+      <text x="112" y="178" text-anchor="middle" font-size="11" fill="#8fa4c8">what was observed</text>
+
+      <rect x="222" y="128" width="164" height="66" rx="9" fill="#132449" stroke="#2c4a86"/>
+      <text x="304" y="158" text-anchor="middle" font-size="14" font-weight="700" fill="#cdeaf2">Claim</text>
+      <text x="304" y="178" text-anchor="middle" font-size="11" fill="#8fa4c8">what it means</text>
+
+      <rect x="414" y="128" width="164" height="66" rx="9" fill="#132449" stroke="#2c4a86"/>
+      <text x="496" y="152" text-anchor="middle" font-size="14" font-weight="700" fill="#cdeaf2">Action</text>
+      <text x="496" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="#cdeaf2">proposal</text>
+      <text x="496" y="186" text-anchor="middle" font-size="11" fill="#8fa4c8">what to do</text>
+
+      <rect x="606" y="128" width="164" height="66" rx="9" fill="#2c2213" stroke="#a8801f"/>
+      <text x="688" y="152" text-anchor="middle" font-size="14" font-weight="700" fill="#ffe0a0">Human</text>
+      <text x="688" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="#ffe0a0">approval</text>
+      <text x="688" y="186" text-anchor="middle" font-size="11" fill="#c9b183">the only gate</text>
+
+      <rect x="798" y="128" width="164" height="66" rx="9" fill="#132449" stroke="#2c4a86"/>
+      <text x="880" y="152" text-anchor="middle" font-size="14" font-weight="700" fill="#cdeaf2">Execution</text>
+      <text x="880" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="#cdeaf2">receipt</text>
+      <text x="880" y="186" text-anchor="middle" font-size="11" fill="#8fa4c8">what happened</text>
+
+      <rect x="990" y="128" width="164" height="66" rx="9" fill="#0f2f33" stroke="#2f7d7d"/>
+      <text x="1072" y="158" text-anchor="middle" font-size="14" font-weight="700" fill="#9de8e8">Verification</text>
+      <text x="1072" y="178" text-anchor="middle" font-size="11" fill="#6fb5b5">did it hold?</text>
+    </g>
+    <g stroke="#5fd3d3" stroke-width="2">
+      <line x1="196" y1="161" x2="218" y2="161" marker-end="url(#wa)"/>
+      <line x1="388" y1="161" x2="410" y2="161" marker-end="url(#wa)"/>
+      <line x1="580" y1="161" x2="602" y2="161" marker-end="url(#wa)"/>
+      <line x1="772" y1="161" x2="794" y2="161" marker-end="url(#wa)"/>
+      <line x1="964" y1="161" x2="986" y2="161" marker-end="url(#wa)"/>
+    </g>
+
+    <text x="600" y="238" text-anchor="middle" font-size="14" font-weight="700" fill="#e06a6a" letter-spacing="1">WHAT THIS MODEL REFUSES TO ACCEPT</text>
+
+    <g>
+      <rect x="30" y="258" width="368" height="74" rx="9" fill="#2a1218" stroke="#7d2f3a"/>
+      <text x="50" y="284" font-size="13" font-weight="600" fill="#ffb3b3">A claim standing on weak evidence alone</text>
+      <text x="50" y="305" font-size="11.5" fill="#c98d94">strength is declared, not assumed — a hunch cannot become a fact</text>
+      <text x="50" y="322" font-size="11.5" fill="#c98d94">by being repeated in a summary</text>
+
+      <rect x="416" y="258" width="368" height="74" rx="9" fill="#2a1218" stroke="#7d2f3a"/>
+      <text x="436" y="284" font-size="13" font-weight="600" fill="#ffb3b3">A proposal that grants its own permission</text>
+      <text x="436" y="305" font-size="11.5" fill="#c98d94">it may declare a permission tier; it can never award one.</text>
+      <text x="436" y="322" font-size="11.5" fill="#c98d94">naming a level is not holding it</text>
+
+      <rect x="802" y="258" width="368" height="74" rx="9" fill="#2a1218" stroke="#7d2f3a"/>
+      <text x="822" y="284" font-size="13" font-weight="600" fill="#ffb3b3">An approval used as execution authority</text>
+      <text x="822" y="305" font-size="11.5" fill="#c98d94">approval is an auditable record of a human decision —</text>
+      <text x="822" y="322" font-size="11.5" fill="#c98d94">not a token that authorizes the next action</text>
+
+      <rect x="30" y="344" width="368" height="74" rx="9" fill="#2a1218" stroke="#7d2f3a"/>
+      <text x="50" y="370" font-size="13" font-weight="600" fill="#ffb3b3">A workflow completed without verification</text>
+      <text x="50" y="391" font-size="11.5" fill="#c98d94">&quot;done&quot; requires a verification object. A receipt says something</text>
+      <text x="50" y="408" font-size="11.5" fill="#c98d94">ran; only verification says it worked</text>
+
+      <rect x="416" y="344" width="368" height="74" rx="9" fill="#2a1218" stroke="#7d2f3a"/>
+      <text x="436" y="370" font-size="13" font-weight="600" fill="#ffb3b3">A denial quietly reopened</text>
+      <text x="436" y="391" font-size="11.5" fill="#c98d94">a denied workflow reopens only with explicitly declared</text>
+      <text x="436" y="408" font-size="11.5" fill="#c98d94">new evidence — never by asking again in a fresh session</text>
+
+      <rect x="802" y="344" width="368" height="74" rx="9" fill="#2a1218" stroke="#7d2f3a"/>
+      <text x="822" y="370" font-size="13" font-weight="600" fill="#ffb3b3">A stale or missing reference</text>
+      <text x="822" y="391" font-size="11.5" fill="#c98d94">references are typed and version-bound. A dependency that</text>
+      <text x="822" y="408" font-size="11.5" fill="#c98d94">moved is rejected, not silently resolved to whatever is there now</text>
+    </g>
+
+    <!-- closed contract demo -->
+    <rect x="30" y="442" width="1140" height="132" rx="10" fill="#0f2233" stroke="#2f6a7d"/>
+    <text x="54" y="470" font-size="14" font-weight="700" fill="#9de8e8">The boundary is one field wide</text>
+    <text x="54" y="492" font-size="11.5" fill="#7fb0c0">A valid public handoff and a rejected one differ by a single added key. That key is the whole point.</text>
+    <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5">
+      <text x="54" y="520" fill="#8fd8a0">  "task_id": "review-20260808-001",  "capability": "code-review",  "risk": "low",</text>
+      <text x="54" y="539" fill="#8fd8a0">  "token_budget": 4000,  "evidence_references": ["evidence:design-note-v1"]        → accepted</text>
+      <text x="54" y="562" fill="#ff9f9f">+ "execution_permission": "do-not-put-authority-here"                                → handoff contains unsupported fields</text>
+    </g>
+  </g>
+</svg>
