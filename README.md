@@ -47,7 +47,7 @@ if not result.valid:
 Mothership is a portable local control plane. WGM is an optional governance
 layer that validates workflow evidence and authority boundaries before a human
 chooses any external action. Neither package installs, configures, or invokes
-the other. WGM owns the `governance-handoff` 1.0 schema; the local Mothership
+the other. WGM owns the `governance-handoff` 1.1 schema; the local Mothership
 0.2.0 suite relationship and reproducible owner manifest are documented in
 [`docs/mothership-suite.md`](docs/mothership-suite.md).
 
@@ -62,7 +62,7 @@ The handoff is deliberately small and credential-free:
 
 ```json
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "task_id": "demo-review-001",
   "capability": "code-review",
   "risk": "low",
@@ -71,13 +71,16 @@ The handoff is deliberately small and credential-free:
 }
 ```
 
-See the [public handoff schema](schemas/workflow-handoff.schema.json),
+See the [public handoff 1.1 schema](schemas/workflow-handoff.1.1.schema.json),
 [valid example](examples/handoff.valid.json), and the
 [compatibility guide](docs/compatibility.md). This object never includes
 credentials, prompts, outputs, local paths, or execution permission.
 Public identifiers use a portable ASCII token grammar: they begin with an
 alphanumeric character and continue with alphanumerics, `.`, `_`, `:`, or `-`;
 drive-relative `X:` prefixes are rejected.
+The previously released, permissive
+[`workflow-handoff` 1.0 schema](schemas/workflow-handoff.schema.json) remains
+available for compatibility; new producers should emit 1.1.
 
 ## Safe LLM routing
 

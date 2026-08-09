@@ -1,8 +1,12 @@
 # Mothership suite compatibility
 
-Workflow Governance Model owns the `governance-handoff` 1.0 semantics. The owner schema is
-`schemas/workflow-handoff.schema.json`; Mothership 0.2.0 freezes those exact reviewed bytes for suite composition while
+Workflow Governance Model owns the `governance-handoff` 1.1 semantics. The owner schema is
+`schemas/workflow-handoff.1.1.schema.json`; Mothership 0.2.0 freezes those exact reviewed bytes for suite composition while
 WGM remains independently installable.
+
+The previously released `schemas/workflow-handoff.schema.json` remains the
+permissive 1.0 contract. It is not silently narrowed; new suite integrations
+select 1.1 explicitly.
 
 The closed `suite/mothership-0.2-conformance.json` manifest binds the owner schema digest and
 `examples/handoff.valid.json`. Reproduce it with:

@@ -11,7 +11,8 @@ from wgm import validate_handoff
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "suite/mothership-0.2-conformance.json"
-SCHEMA = ROOT / "schemas/workflow-handoff.schema.json"
+SCHEMA = ROOT / "schemas/workflow-handoff.1.1.schema.json"
+LEGACY_SCHEMA = ROOT / "schemas/workflow-handoff.schema.json"
 EXAMPLE = ROOT / "examples/handoff.valid.json"
 EXPECTED_KEYS = {
     "schema_version",
@@ -35,8 +36,8 @@ def _check_manifest(document: object) -> None:
         "suite_release": "0.2.0",
         "repository": "workflow-governance-model",
         "protocol_kind": "governance-handoff",
-        "protocol_version": "1.0",
-        "schema_path": "schemas/workflow-handoff.schema.json",
+        "protocol_version": "1.1",
+        "schema_path": "schemas/workflow-handoff.1.1.schema.json",
         "example_path": "examples/handoff.valid.json",
         "authority_effect": False,
         "execution_effect": False,
@@ -89,6 +90,7 @@ class MothershipConformanceTests(unittest.TestCase):
     def test_golden_handoff_passes_the_production_validator(self) -> None:
         handoff = json.loads(EXAMPLE.read_text("utf-8"))
         self.assertEqual([], validate_handoff(handoff))
+        self.assertEqual("1.1", handoff["schema_version"])
         self.assertEqual("demo-review-001", handoff["task_id"])
         self.assertEqual("code-review", handoff["capability"])
         self.assertEqual("low", handoff["risk"])
@@ -104,6 +106,21 @@ class MothershipConformanceTests(unittest.TestCase):
             pattern,
             schema["properties"]["evidence_references"]["items"]["pattern"],
         )
+
+    def test_released_1_0_identifier_acceptance_is_preserved(self) -> None:
+        handoff = json.loads(EXAMPLE.read_text("utf-8"))
+        handoff.update(
+            schema_version="1.0",
+            task_id="review #42",
+            capability="日本語 review",
+            evidence_references=["evidence #1"],
+        )
+        self.assertEqual([], validate_handoff(handoff))
+        schema = json.loads(LEGACY_SCHEMA.read_text("utf-8"))
+        self.assertEqual("1.0", schema["properties"]["schema_version"]["const"])
+        for field in ("task_id", "capability"):
+            self.assertNotIn("pattern", schema["properties"][field])
+        self.assertNotIn("pattern", schema["properties"]["evidence_references"]["items"])
 
     def test_authority_carriers_and_private_paths_are_rejected(self) -> None:
         handoff = json.loads(EXAMPLE.read_text("utf-8"))

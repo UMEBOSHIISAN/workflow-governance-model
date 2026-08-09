@@ -3,9 +3,9 @@
   "suite_release": "0.2.0",
   "repository": "workflow-governance-model",
   "protocol_kind": "governance-handoff",
-  "protocol_version": "1.0",
-  "schema_path": "schemas/workflow-handoff.schema.json",
-  "schema_sha256": "d2a331678cf4244735a3c517d6544b41417872c90fe6f88970f684dc57202c00",
+  "protocol_version": "1.1",
+  "schema_path": "schemas/workflow-handoff.1.1.schema.json",
+  "schema_sha256": "75f96909fa31a8bcf65d74d243aeea0e8b43185b13974f19f60f47cf769125c7",
   "example_path": "examples/handoff.valid.json",
   "authority_effect": false,
   "execution_effect": false

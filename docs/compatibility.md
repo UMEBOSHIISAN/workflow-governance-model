@@ -11,7 +11,7 @@ installs, discovers, or invokes another one automatically.
 
 ## Handoff contract
 
-[`schemas/workflow-handoff.schema.json`](../schemas/workflow-handoff.schema.json)
+[`schemas/workflow-handoff.1.1.schema.json`](../schemas/workflow-handoff.1.1.schema.json)
 is the public metadata shape for a reviewed request. It contains only a task
 identifier, capability, risk, token budget, and opaque evidence references.
 It must never carry credentials, prompts, model output, private paths, or
@@ -30,7 +30,9 @@ handoff is neither approval nor execution authority.
 
 ## Mothership 0.2.0 candidate conformance
 
-WGM owns `governance-handoff` 1.0. The local, unpublished Mothership 0.2.0
+WGM owns `governance-handoff` 1.1. The released 1.0 schema remains available
+without a narrowed acceptance set for existing producers. The local,
+unpublished Mothership 0.2.0
 candidate freezes the exact owner schema bytes and validates the synthetic
 `demo-review-001` handoff. The closed owner manifest and reproduction command
 are in [`mothership-suite.md`](mothership-suite.md).
