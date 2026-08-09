@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Reject non-string handoff schema versions as validation errors instead of
+  raising an exception on otherwise valid JSON input.
 - Added a closed Mothership 0.2.0 owner manifest and synthetic
   `governance-handoff` 1.1 example with tests for schema drift, forbidden
   authority carriers, private paths, and false effect boundaries.

@@ -38,7 +38,7 @@ def validate_handoff(handoff: object) -> list[HandoffError]:
     if unexpected:
         errors.append(HandoffError("$", "handoff contains unsupported fields"))
     version = handoff.get("schema_version")
-    if version not in {"1.0", "1.1"}:
+    if not isinstance(version, str) or version not in {"1.0", "1.1"}:
         errors.append(HandoffError("schema_version", "schema_version must be '1.0' or '1.1'"))
     identifier_is_valid = _is_legacy_identifier if version == "1.0" else _is_safe_identifier
     for name in ("task_id", "capability"):
