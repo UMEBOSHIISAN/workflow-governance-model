@@ -119,7 +119,7 @@ Python **3.12+**, standard library only.
 ```sh
 git clone https://github.com/UMEBOSHIISAN/workflow-governance-model.git
 cd workflow-governance-model
-PYTHONPATH=src python3 -m unittest discover -s tests -v      # 17 tests
+PYTHONPATH=src python3 -m unittest discover -s tests -v      # 18 tests
 ```
 
 > **`PYTHONPATH=src` is required** unless you install the package first. Without it the suite fails with `ModuleNotFoundError: No module named 'wgm'` and reports a single error — a path problem, not a broken checkout. To drop the prefix, run `python3 -m pip install -e .` once.

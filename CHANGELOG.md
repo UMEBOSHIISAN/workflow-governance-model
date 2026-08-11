@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.3.0 - 2026-08-11
+
 - Reject non-string handoff schema versions as validation errors instead of
   raising an exception on otherwise valid JSON input.
 - Added a closed Mothership 0.2.0 owner manifest and synthetic

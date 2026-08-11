@@ -3,11 +3,14 @@
 WGM, Mothership Router, and Mothership are separate repositories. None
 installs, discovers, or invokes another one automatically.
 
-| Component | Current public version | Responsibility | Does not do |
+| Component | Release-wave version | Responsibility | Does not do |
 | --- | --- | --- | --- |
-| [Workflow Governance Model](https://github.com/UMEBOSHIISAN/workflow-governance-model) | 0.2.1 | Validate workflow evidence and authority metadata; recommend candidates | Execute a command or grant authority |
-| [Mothership Router](https://github.com/UMEBOSHIISAN/mothership-router) | 0.2.0 | Check a local ready registry and a digest-bound human approval; emit a dry-run manifest | Load credentials or launch a provider |
-| [Mothership](https://github.com/UMEBOSHIISAN/mothership) | 0.1.2 | Portable environment contracts and diagnostics | Install or operate the other components |
+| [Workflow Governance Model](https://github.com/UMEBOSHIISAN/workflow-governance-model) | 0.3.0 | Validate workflow evidence and authority metadata; recommend candidates | Execute a command or grant authority |
+| [Mothership Router](https://github.com/UMEBOSHIISAN/mothership-router) | 0.3.0 | Check a local ready registry and a digest-bound human approval; emit a dry-run manifest | Load credentials or launch a provider |
+| [Mothership](https://github.com/UMEBOSHIISAN/mothership) | 0.2.1 | Portable environment contracts and diagnostics | Install or operate the other components |
+
+The wave is published in WGM, Router, then Mothership order. A version is not
+public until its own repository has published its tag and GitHub Release.
 
 ## Handoff contract
 
@@ -28,15 +31,14 @@ Agent Frontdoor / local form
 High-risk work stops for human review at both WGM routing and Router. A valid
 handoff is neither approval nor execution authority.
 
-## Mothership 0.2.0 candidate conformance
+## Mothership 0.2.0 conformance
 
 WGM owns `governance-handoff` 1.1. The released 1.0 schema remains available
-without a narrowed acceptance set for existing producers. The local,
-unpublished Mothership 0.2.0
-candidate freezes the exact owner schema bytes and validates the synthetic
+without a narrowed acceptance set for existing producers. Mothership 0.2.0
+freezes the exact owner schema bytes and validates the synthetic
 `demo-review-001` handoff. The closed owner manifest and reproduction command
 are in [`mothership-suite.md`](mothership-suite.md).
 
 Router receives reviewed metadata, not approval or execution authority.
-Conformance is shape/version/safety compatibility only; it does not claim that
-either local commit is remotely reachable or released.
+Conformance is shape/version/safety compatibility only; it does not grant
+authority or claim that a workflow ran.
